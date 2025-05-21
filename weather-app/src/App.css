@@ -1,42 +1,52 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+h1 {
+  font-size: 2.5em;
+  margin: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.weather-card {
+  margin: 10em 0 0 8em;
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  width: 253px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.radio-group {
+  display: flex;
+  gap: 4rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
 }
 
-.card {
-  padding: 2em;
+.circle-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+}
+.circle-radio input[type="radio"] {
+  display: none;
 }
 
-.read-the-docs {
-  color: #888;
+.circle-radio .dot {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 2px solid #7fffd4;
+  background-color: transparent;
+  position: relative;
+  transition: all 0.3s ease;
+  color: aquamarine;
+}
+
+/* When selected */
+.circle-radio input[type="radio"]:checked + .dot {
+  background-color: #7fffd4;
 }
