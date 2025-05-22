@@ -2,13 +2,47 @@ h1 {
   font-size: 2.5em;
   margin: 0;
 }
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.input-wrapper,
+.output-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+/* Stack columns on small screens */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .input-wrapper,
+  .output-wrapper {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+.input-wrapper {
+  margin-top: 8rem;
+}
+
+.output-wrapper {
+  margin-top: 6rem;
+}
 
 .weather-card {
-  margin: 10em 0 0 8em;
   padding: 1rem;
   border: 2px solid black;
   border-radius: 1rem;
-  width: 253px;
+  margin-bottom: 1rem;
 }
 
 .radio-group {
@@ -49,4 +83,50 @@ h1 {
 /* When selected */
 .circle-radio input[type="radio"]:checked + .dot {
   background-color: #7fffd4;
+}
+
+.weather-forecast {
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  width: 30vw;
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fffaf3;
+}
+
+.weather-forecast h2 {
+  margin: 0;
+  padding: 0.25rem;
+}
+.favorite {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.forecast {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.forecast-day {
+  border-radius: 0.5rem;
+  padding: 0 0.25rem;
+  text-align: center;
+  border: 1px solid #000000;
+  color: rgb(143, 141, 141);
+  font-size: 0.8rem;
+}
+
+.forecast-label {
+  width: 100%;
+  text-align: center;
+  display: block;
+  background-color: chocolate;
 }
