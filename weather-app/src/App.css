@@ -89,7 +89,6 @@ h1 {
   padding: 1rem;
   border: 2px solid black;
   border-radius: 1rem;
-  margin-bottom: 1rem;
   width: 30vw;
   height: 25vh;
   display: flex;
@@ -102,10 +101,48 @@ h1 {
   margin: 0;
   padding: 0.25rem;
 }
+
 .favorite {
   display: flex;
   gap: 1rem;
   align-items: center;
+  margin: 0.5rem;
+}
+
+.favorite input[type="checkbox"] {
+  display: none;
+}
+.favorite label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.favorite .checkmark {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #808080;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+/* change background color when checked 
+.favorite input[type="checkbox"]:checked + .checkmark {
+  background-color: #000000;
+} */
+
+/* Show checkmark when checked */
+.favorite input[type="checkbox"]:checked + .checkmark::after {
+  content: "✔";
+  color: #000;
+  position: absolute;
+  left: 0.15rem;
+  top: -0.1rem;
+  font-size: 1rem;
+  line-height: 1rem;
 }
 
 .forecast {
@@ -125,8 +162,8 @@ h1 {
 }
 
 .forecast-label {
-  width: 100%;
   text-align: center;
   display: block;
   background-color: chocolate;
+  margin-top: 0.5rem;
 }

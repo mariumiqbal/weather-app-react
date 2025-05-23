@@ -8,6 +8,14 @@ function App() {
 = ${import.meta.env.VITE_API_KEY}`;
   };
 
+  const forecastData = [
+    { temp: "52°F" },
+    { temp: "48°F" },
+    { temp: "50°F" },
+    { temp: "55°F" },
+    { temp: "53°F" },
+  ];
+
   return (
     <div className="wrapper">
       <div className="input-wrapper">
@@ -39,19 +47,18 @@ function App() {
           <h2> Temperature 52F</h2>
           <h2>Chicago</h2>
         </div>
-        <div className="favorite">
+        <label className="favorite">
           <input type="checkbox" id="checkbox" />
-          <label htmlFor="checkbox">Save as Favorite</label>
-        </div>
+          <span className="checkmark"></span>Save as Favorite
+        </label>
         <div className="forecast">
-          <div className="forecast-day">
-            <p className="temp">52°F</p>
-          </div>
-          <div className="forecast-day">
-            <p className="temp">48°F</p>
-          </div>
-          <p className="forecast-label"> 3-5 day Forecast</p>
+          {forecastData.map((day, idx) => (
+            <div className="forecast-day" key={idx}>
+              <p className="temp">{day.temp}</p>
+            </div>
+          ))}
         </div>
+        <div className="forecast-label"> 3-5 day Forecast</div>
       </div>
     </div>
   );
