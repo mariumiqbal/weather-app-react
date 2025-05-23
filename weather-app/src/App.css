@@ -1,42 +1,181 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+h1 {
+  font-size: 2.5em;
+  margin: 0;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.input-wrapper,
+.output-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+.input-wrapper {
+  margin-top: 8rem;
+}
+
+.output-wrapper {
+  margin-top: 6rem;
+}
+
+/* Stack columns on small screens */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .input-wrapper,
+  .output-wrapper {
+    width: 100%;
+  }
+  .input-wrapper {
+    margin-top: 3rem;
+  }
+  .output-wrapper {
+    margin-top: 2rem;
+  }
+}
+
+.weather-card {
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.radio-group {
+  display: flex;
+  gap: 4rem;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.circle-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+}
+.circle-radio input[type="radio"] {
+  display: none;
+}
+
+.circle-radio .dot {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 2px solid #7fffd4;
+  background-color: transparent;
+  position: relative;
+  transition: all 0.3s ease;
+  color: aquamarine;
+}
+
+/* When selected */
+.circle-radio input[type="radio"]:checked + .dot {
+  background-color: #7fffd4;
+}
+
+.weather-forecast {
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  width: 30vw;
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fffaf3;
+}
+
+@media (max-width: 768px) {
+  .weather-forecast {
+    width: 60vw;
+  }
+}
+
+.weather-forecast h2 {
+  margin: 0;
+  padding: 0.25rem;
+}
+
+.favorite {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.favorite input[type="checkbox"] {
+  display: none;
+}
+.favorite label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.favorite .checkmark {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #808080;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+/* change background color when checked 
+.favorite input[type="checkbox"]:checked + .checkmark {
+  background-color: #000000;
+} */
+
+/* Show checkmark when checked */
+.favorite input[type="checkbox"]:checked + .checkmark::after {
+  content: "✔";
+  color: #000;
+  position: absolute;
+  left: 0.15rem;
+  top: -0.1rem;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.forecast {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.forecast-day {
+  border-radius: 0.5rem;
+  padding: 0 0.25rem;
   text-align: center;
+  border: 1px solid #000000;
+  color: rgb(143, 141, 141);
+  font-size: 0.8rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.forecast-label {
+  text-align: center;
+  display: block;
+  background-color: chocolate;
+  margin-top: 0.5rem;
 }
