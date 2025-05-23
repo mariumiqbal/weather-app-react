@@ -95,12 +95,18 @@ h1 {
   padding: 1rem;
   border: 2px solid black;
   border-radius: 1rem;
-  width: 60vw;
+  width: 30vw;
   height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #fffaf3;
+}
+
+@media (max-width: 768px) {
+  .weather-forecast {
+    width: 60vw;
+  }
 }
 
 .weather-forecast h2 {
