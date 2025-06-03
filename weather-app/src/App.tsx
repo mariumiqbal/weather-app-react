@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const APIKey = import.meta.env.VITE_WEATHER_API_KEY;
 const BASE_URL = import.meta.env.VITE_WEATHER_BASE_URL;
@@ -9,9 +9,30 @@ function App() {
   const [error, setError] = useState("");
   const [weatherData, setWeatherData] = useState<any>(null);
   const [unit, setUnit] = useState("fahrenheit");
+  const [favoriteCity, setFavoriteCity] = useState(() => {
+    return localStorage.getItem("favoriteCity") || "";
+  });
 
-  const getWeather = async () => {
-    if (!city.trim()) {
+  useEffect(() => {
+    if (favoriteCity) {
+      setCity(favoriteCity); // Set the city to the favorite city on initial load
+      getWeather(favoriteCity); // Fetch weather data for the favorite city
+    }
+  }, [favoriteCity]);
+
+  const handleFavoriteChange = (e: any) => {
+    if (city.trim() && e.target.checked) {
+      localStorage.setItem("favoriteCity", city);
+      setFavoriteCity(city);
+    } else {
+      localStorage.removeItem("favoriteCity");
+      setFavoriteCity("");
+    }
+  };
+
+  const getWeather = async (cityName: string) => {
+    const queryCity = cityName ?? city; // Use provided city name or current state
+    if (!queryCity.trim()) {
       setError("Please enter a valid city name");
       setWeatherData(null); // Reset weather data if city is invalid or empty
       return;
@@ -19,7 +40,7 @@ function App() {
     setError(""); // Clear previous error
     setWeatherData(null); // Reset weather data before fetching new data
     try {
-      const api = `${BASE_URL}forecast.json?key=${APIKey}&q=${city}&aqi=no&days=5`;
+      const api = `${BASE_URL}forecast.json?key=${APIKey}&q=${queryCity}&aqi=no&days=5`;
       const response = await fetch(api);
 
       if (!response.ok) {
@@ -70,7 +91,7 @@ function App() {
           </div>
         </div>
         {error && <span style={{ color: "red" }}>{error}</span>}
-        <button onClick={getWeather}>Enter</button>
+        <button onClick={() => getWeather()}>Enter</button>
       </div>
       {weatherData && (
         <div className="output-wrapper">
@@ -87,7 +108,12 @@ function App() {
             <h2>{weatherData.location.name}</h2>
           </div>
           <label className="favorite">
-            <input type="checkbox" id="checkbox" />
+            <input
+              type="checkbox"
+              id="checkbox"
+              onChange={handleFavoriteChange}
+              checked={favoriteCity === city}
+            />
             <span className="checkmark"></span>Save as Favorite
           </label>
           <div className="forecast">
