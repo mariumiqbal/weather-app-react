@@ -30,7 +30,7 @@ function App() {
     }
   };
 
-  const getWeather = async (cityName: string) => {
+  const getWeather = async (cityName?: string) => {
     const queryCity = cityName ?? city; // Use provided city name or current state
     if (!queryCity.trim()) {
       setError("Please enter a valid city name");
@@ -61,6 +61,7 @@ function App() {
           <p>Enter city Below</p>
           <input
             type="text"
+            value={city}
             placeholder="Enter city name"
             className="input"
             onChange={(e) => setCity(e.target.value)}
@@ -113,6 +114,7 @@ function App() {
               id="checkbox"
               onChange={handleFavoriteChange}
               checked={favoriteCity === city}
+              disabled={!city.trim()}
             />
             <span className="checkmark"></span>Save as Favorite
           </label>
