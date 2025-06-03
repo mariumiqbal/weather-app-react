@@ -13,9 +13,11 @@ function App() {
   const getWeather = async () => {
     if (!city.trim()) {
       setError("Please enter a valid city name");
+      setWeatherData(null); // Reset weather data if city is invalid or empty
       return;
     }
     setError(""); // Clear previous error
+    setWeatherData(null); // Reset weather data before fetching new data
     try {
       const api = `${BASE_URL}forecast.json?key=${APIKey}&q=${city}&aqi=no&days=5`;
       const response = await fetch(api);
@@ -25,8 +27,8 @@ function App() {
       }
       const data = await response.json();
       setWeatherData(data);
-      console.log("Weather data fetched successfully:", data);
     } catch (error) {
+      setError("Failed to fetch weather data. Please try again.");
       console.log("There was a problem with the fetch operation:", error);
     }
   };
@@ -67,7 +69,7 @@ function App() {
             </label>
           </div>
         </div>
-        {error && <span style={{ color: "red" }}>{error}</span>}-
+        {error && <span style={{ color: "red" }}>{error}</span>}
         <button onClick={getWeather}>Enter</button>
       </div>
       {weatherData && (
@@ -93,8 +95,8 @@ function App() {
               <div className="forecast-day" key={idx}>
                 <p className="temp">
                   {unit === "celsius"
-                    ? `${day.day.avgtemp_c}C`
-                    : `${day.day.avgtemp_f}F`}
+                    ? `${day.day.avgtemp_c}°C`
+                    : `${day.day.avgtemp_f}°F`}
                 </p>
               </div>
             ))}
